@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,17 +26,22 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">
-                R
-              </span>
+            <div>
+              <Image
+                src="/logo.jpg" // public/logo.png
+                alt="Reborn Logo" // 대체 텍스트 (접근성)
+                width={88} // 아이콘 실제 크기(px)
+                height={88}
+                className="object-contain" // 이미지 비율 유지
+              />
             </div>
-            <div className="flex flex-col">
+
+            {/* <div className="flex flex-col">
               <span className="font-bold text-xl text-foreground">Reborn</span>
               <span className="text-xs text-muted-foreground">
                 자원 재탄생 플랫폼
               </span>
-            </div>
+            </div> */}
           </Link>
 
           {/* Desktop Menu */}
@@ -44,17 +50,17 @@ export default function Navigation() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-primary transition-colors font-medium"
+                className="text-foreground hover:text-primary transition-colors font-semibold"
               >
                 {item.name}
               </Link>
             ))}
 
-            <div className="flex items-center gap-3 ml-4 pl-4 border-l border-border">
+            <div className="flex items-center gap-3 ml-4 pl-4 border-l border-border  font-semibold">
               {isLoggedIn ? (
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors font-medium"
+                  className="px-4 py-2 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors"
                 >
                   로그아웃
                 </button>
@@ -62,13 +68,13 @@ export default function Navigation() {
                 <>
                   <Link
                     href="/login"
-                    className="px-4 py-2 rounded-lg text-foreground hover:text-primary transition-colors font-medium"
+                    className="px-4 py-2 rounded-lg text-foreground hover:text-primary transition-colors"
                   >
                     로그인
                   </Link>
                   <Link
                     href="/signup"
-                    className="px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium"
+                    className="px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                   >
                     회원가입
                   </Link>
