@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const menuItems = [
     { name: "게시판", href: "/board" },
@@ -13,6 +14,10 @@ export default function Navigation() {
     { name: "중고제품 상품페이지", href: "/products" },
     { name: "예약페이지", href: "/reservation" },
   ];
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
 
   return (
     <nav className="bg-white border-b border-border sticky top-0 z-50">
@@ -27,23 +32,49 @@ export default function Navigation() {
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-xl text-foreground">Reborn</span>
-              <span className="text-xs text-muted-foreground font-semibold">
+              <span className="text-xs text-muted-foreground">
                 자원 재탄생 플랫폼
               </span>
             </div>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8 ">
+          <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-primary transition-colors font-bold"
+                className="text-foreground hover:text-primary transition-colors font-medium"
               >
                 {item.name}
               </Link>
             ))}
+
+            <div className="flex items-center gap-3 ml-4 pl-4 border-l border-border">
+              {isLoggedIn ? (
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors font-medium"
+                >
+                  로그아웃
+                </button>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="px-4 py-2 rounded-lg text-foreground hover:text-primary transition-colors font-medium"
+                  >
+                    로그인
+                  </Link>
+                  <Link
+                    href="/signup"
+                    className="px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium"
+                  >
+                    회원가입
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -68,6 +99,34 @@ export default function Navigation() {
                 {item.name}
               </Link>
             ))}
+
+            <div className="mt-4 pt-4 border-t border-border space-y-2">
+              {isLoggedIn ? (
+                <button
+                  onClick={handleLogout}
+                  className="w-full px-4 py-2 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors font-medium"
+                >
+                  로그아웃
+                </button>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="block w-full px-4 py-2 rounded-lg text-center text-foreground hover:text-primary transition-colors font-medium border border-border"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    로그인
+                  </Link>
+                  <Link
+                    href="/signup"
+                    className="block w-full px-4 py-2 rounded-lg text-center bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    회원가입
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         )}
       </div>
