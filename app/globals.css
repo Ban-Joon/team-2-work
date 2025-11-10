@@ -72,3 +72,31 @@
     @apply bg-[var(--background)] text-[var(--foreground)] font-sans;
   }
 }
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background: #f7f9f8;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+header {
+  background: linear-gradient(to right, #a4e08a, #6ccf7e);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+footer {
+  background: #111;
+  color: #aaa;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+}

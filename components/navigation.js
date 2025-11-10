@@ -12,7 +12,7 @@ export default function Navigation() {
   const menuItems = [
     { name: "게시판", href: "/board" },
     { name: "재활용 방법", href: "/recycling" },
-    { name: "중고제품 상품페이지", href: "/products" },
+    { name: "중고제품 상품페이지", href: "/productpage" },
     { name: "예약페이지", href: "/reservation" },
   ];
 
